@@ -5,10 +5,12 @@ const Joi = require('joi');
 
 const init = async () => {
 
-    const server = Hapi.server({
-        port: 3000,
-        host: 'localhost'
-    });
+    // const server = Hapi.server({
+    //     port: 3000,
+    //     host: 'localhost'
+    // });
+    //niby może dzięki temu na heroku zadziaął
+    var server = new Hapi.Server(+process.env.PORT, '0.0.0.0');
 
     server.route({
         method: 'GET',

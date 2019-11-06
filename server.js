@@ -1,16 +1,16 @@
 const hapi = require('hapi');
 const inert = require('inert');
 
-// const server = hapi.server({ //tworzy serwer
-//     port: 3000,
-//     host: 'localhost',
-//     routes: {
-//         cors: true
-//     }
-// });
+const server = hapi.server({ //tworzy serwer
+    port: 3000,
+    host: 'https://trellohapi.herokuapp.com/',
+    routes: {
+        cors: true
+    }
+});
 
 
-const server = new hapi.Server(+process.env.PORT, '0.0.0.0');
+//const server = new hapi.Server(+process.env.PORT, '0.0.0.0');
 
 ///////////////////////////////////// route
 server.route({

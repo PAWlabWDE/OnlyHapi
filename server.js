@@ -9,8 +9,8 @@ const inert = require('inert');
 //     }
 // });
 
-
-var server = new hapi.Server(+process.env.PORT, '0.0.0.0');
+//masz jakieś pomysy? nie... unowe to xD
+const server = new hapi.Server(+process.env.PORT, '0.0.0.0');
 
 ///////////////////////////////////// route
 //ruting, serwer na rządanie get zwróci to po return
@@ -18,7 +18,7 @@ server.route({
         method: 'GET',
         path: '/aboutus',
         handler: (req, h) => {
-            return '<h1>About Us</h1>'
+            // return '<h1>About Us</h1>'
         }
     })
     //ruting całej strony, potrzebny "inert" chyba do tego

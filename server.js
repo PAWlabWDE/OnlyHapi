@@ -1,10 +1,23 @@
 const hapi = require('hapi');
 const inert = require('inert');
 
-const server = hapi.server({ //tworzy serwer
-    port: 3000,
-    host: 'localhost'
-});
+// const server = hapi.server({ //tworzy serwer
+//     port: 3000,
+//     host: 'localhost',
+//     routes: {
+//         cors: true
+//     }
+// });
+const express = require('express')
+const path = require('path')
+const PORT = process.env.PORT || 5000
+
+express()
+    .use(express.static(path.join(__dirname, 'public')))
+    .set('views', path.join(__dirname, 'views'))
+    .set('view engine', 'ejs')
+    .get('/', (req, res) => res.render('pages/index'))
+    .listen(PORT, () => console.log(`Listening on ${PORT}`))
 
 ///////////////////////////////////// route
 //ruting, serwer na rządanie get zwróci to po return

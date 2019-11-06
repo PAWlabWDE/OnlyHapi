@@ -1,24 +1,31 @@
 const hapi = require('hapi');
 const inert = require('inert');
 
-// const server = hapi.server({ //tworzy serwer
-//     port: 3000,
-//     host: 'localhost',
-//     routes: {
-//         cors: true
-//     }
-// });
+const server = hapi.server({ //tworzy serwer
+    port: 3000,
+    host: 'localhost',
+    routes: {
+        cors: true
+    }
+});
 
-//masz jakieś pomysy? nie... unowe to xD
-const server = new hapi.Server(+process.env.PORT, '0.0.0.0');
+
+//const server = new hapi.Server(+process.env.PORT, '0.0.0.0');
 
 ///////////////////////////////////// route
+server.route({
+    method: 'GET',
+    path: '/',
+    handler: function(request,reply){
+        return('It is wokring');
+    }
+});
 //ruting, serwer na rządanie get zwróci to po return
 server.route({
         method: 'GET',
-        path: '/aboutus',
-        handler: (req, h) => {
-            // return '<h1>About Us</h1>'
+        path: '/a',
+        handler: function(req, h)  {
+             return ('<h1>About Us</h1>');
         }
     })
     //ruting całej strony, potrzebny "inert" chyba do tego
@@ -64,15 +71,38 @@ server.route({
 
 
 
-//uruchamia serwer hapi
-const bootUpServer = async() => {
-    await server.register(inert); //do renderowani calego htmla chyba XDD
-    await server.start();
-    console.log(`Server is running at ${server.info.uri}`);
-    process.on('unhandledRejection', (err) => {
-        console.log(err);
-        process.exit(1);
-    })
-}
 
-bootUpServer(); //wywołuje funkcję uruchamiającą serwer
+
+
+
+
+
+
+
+server.route({
+    method: 'GET',
+    path: '/',
+    handler: function(request,reply){
+        return('It is wokring');
+    }
+});
+server.route({
+    method: 'GET',
+    path: '/conect',
+    handler: function(request,reply){
+    
+        connection.connect(function(err) {
+          if (err) {
+            return console.error('error: ' + err.message+err.stack);
+          }         
+          console.log('Connected to the MySQL server.');
+        });
+        connection.query('CREATE TABLE [IF NOT EXISTS] Column(column_id INT AUTO_INCREMENT PRIMARY KEY,title VARCHAR(255) NOT NULL);')
+        connection.query('select table_schema as database_name, table_name from information_schema.tables');
+        return "Polaczylem sie lub nie xddd";
+    }
+});
+
+server.start(function(){
+    console.log('Server is running');
+})
